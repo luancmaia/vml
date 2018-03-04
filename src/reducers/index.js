@@ -5,7 +5,8 @@ const initialState = {
 	repos: [],
 	commits: [],
 	current_repo: [],
-	commits_page: 1
+	commits_page: 1,
+	loadMoreCommits: true
 }
 
 function reducer(state = initialState, action) {
@@ -26,14 +27,18 @@ function reducer(state = initialState, action) {
 			return Object.assign({}, state, { 
 				fetchingMoreCommits: false,
 				commits: state.commits.concat(action.payload.data),
-				commits_page: state.commits_page + 1 
+				commits_page: state.commits_page + 1
 			})
 
 		case "REQUEST_COMMITS_PENDING":
 			return Object.assign({}, state, { fetchingCommits: true, commits: [] });
 
 		case "REQUEST_COMMITS_FULFILLED":
-			return Object.assign({}, state, { fetchingCommits: false, commits: action.payload.data });
+			return Object.assign({}, state, {
+				fetchingCommits: false,
+				commits: action.payload.data,
+				loadMoreCommits: action.payload.headers.link ? action.payload.headers.link.includes('next') : false
+			});
 	}
 	return state;
 }
