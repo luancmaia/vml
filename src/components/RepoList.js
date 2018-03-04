@@ -15,7 +15,7 @@ class RepoList extends React.Component {
 	}
 
 	render() {
-		const { repos, loadRepoCommits } = this.props;
+		const { repos, loadRepoCommits, setCurrentRepo } = this.props;
 		const isEmpty = repos.length === 0;
 
 		if ( isEmpty ) {
@@ -36,10 +36,21 @@ const mapDispatchToProps = dispatch => {
 		type: 'REQUEST_REPO',
 		payload: axios.get('https://api.github.com/search/repositories?q=user:globocom&sort=stars:desc')
 	}),
-	loadRepoCommits : (item) => dispatch({
-		type: 'REQUEST_COMMITS',
-		payload: axios.get('https://api.github.com/repos/globocom/'+item.name+'/commits?page=1&per_page=10')
-	})
+	loadRepoCommits : (item) => {
+		dispatch({
+			type: 'SET_CURRENT_REPO',
+			payload: item
+		}),
+		dispatch({
+			type: 'REQUEST_COMMITS',
+			payload: axios.get('https://api.github.com/repos/globocom/'+item.name+'/commits', {
+				params: {
+					page: 1,
+					per_page: 20
+				}
+			})
+		})
+	}
   }
 }
 

@@ -6,11 +6,11 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<nav>
+				<nav style={{ width: '40%', display: 'inline-block' }}>
 					<h2>Repositories</h2>
 					<RepoList />
 				</nav>
-				<main>
+				<main style={{ width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
 					<RepoInfoWrapper />
 				</main>
 			</div>
