@@ -1,6 +1,7 @@
 import React from 'react';
 import RepoList from './RepoList';
 import RepoInfoWrapper from './RepoInfoWrapper';
+import { Route } from 'react-router-dom'
 
 class App extends React.Component {
 	render() {
@@ -11,7 +12,7 @@ class App extends React.Component {
 					<RepoList />
 				</nav>
 				<main style={{ width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
-					<RepoInfoWrapper />
+					<Route path="/:repository" component={RepoInfoWrapper} />
 				</main>
 			</div>
 		);

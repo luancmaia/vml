@@ -6,7 +6,7 @@ const initialState = {
 	commits: [],
 	current_repo: [],
 	commits_page: 1,
-	loadMoreCommits: true
+	loadMoreCommits: false
 }
 
 function reducer(state = initialState, action) {
@@ -27,7 +27,8 @@ function reducer(state = initialState, action) {
 			return Object.assign({}, state, { 
 				fetchingMoreCommits: false,
 				commits: state.commits.concat(action.payload.data),
-				commits_page: state.commits_page + 1
+				commits_page: state.commits_page + 1,
+				loadMoreCommits: action.payload.headers.link ? action.payload.headers.link.includes('next') : false
 			})
 
 		case "REQUEST_COMMITS_PENDING":

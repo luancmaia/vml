@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import RepoItem from './RepoItem';
+import { Link } from 'react-router-dom'
 
 class RepoList extends React.Component {
 
@@ -24,7 +25,9 @@ class RepoList extends React.Component {
 
 		return (
 			repos.map(item => (
-				<RepoItem repo={item} click={loadRepoCommits.bind(this, item)} />
+				<Link to={`/${item.name}`}>
+					<RepoItem repo={item} click={loadRepoCommits.bind(this, item)} />
+				</Link>
 			))
 		);
 	}

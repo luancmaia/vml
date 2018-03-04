@@ -4,13 +4,10 @@ import axios from 'axios';
 
 class RepoInfoWrapper extends React.Component {
 
-	componentDidUpdate() {
-		console.log(this.props);
-	}
-
 	render() {
-		const { current_repo, commits, loadMoreCommits, commits_page } = this.props;
-		const loadMore = commits.length < 20 ? 'Repository details' : <span onClick={loadMoreCommits.bind(this, current_repo, commits_page)}>load more</span>;
+		const { current_repo, commits, requestMoreCommits, loadMoreCommits, commits_page } = this.props;
+		const loadMore = loadMoreCommits ? 
+			<span onClick={requestMoreCommits.bind(this, current_repo, commits_page)}>LOAD MORE</span>: '';
 		return (
 			<div>
 				<h4>{current_repo.name}</h4>
@@ -29,13 +26,14 @@ const mapStateToProps = state => {
   return {
     commits : state.commits,
     current_repo : state.current_repo,
-    commits_page: state.commits_page
+    commits_page: state.commits_page,
+    loadMoreCommits: state.loadMoreCommits
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadMoreCommits : (item, page) => dispatch({
+    requestMoreCommits : (item, page) => dispatch({
 		type: 'LOAD_MORE_COMMITS',
 		payload: axios.get('https://api.github.com/repos/globocom/'+item.name+'/commits', {
 			params: {
