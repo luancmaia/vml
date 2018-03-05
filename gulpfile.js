@@ -3,7 +3,7 @@ var gulp = require('gulp'),
 
 gulp.task('sass', function () {
     return gulp.src('./src/sass/main.sass')
-    .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(sass())
     .on('error', function(err){
         console.error(err.message);
     })

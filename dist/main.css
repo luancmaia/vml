@@ -1,0 +1,96 @@
+* {
+  -webkit-box-sizing: border-box;
+    -webkit-box-sizing--moz-box-sizing: border-box;
+      -webkit-box-sizing--moz-box-sizing-box-sizing: border-box; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif; }
+
+body, h1, h2, h3, h4, h5, ul {
+  margin: 0; }
+
+#root {
+  height: 100%; }
+
+.app-wrapper {
+  display: flex;
+  min-height: 100%; }
+
+.menu-bars {
+  display: none; }
+
+.repos-wrapper {
+  background: #00b9f1;
+  flex: 1;
+  text-align: center; }
+  .repos-wrapper h2 {
+    color: #4a4a4a;
+    padding: 1rem 0; }
+  .repos-wrapper h3, .repos-wrapper span {
+    color: #ffffff;
+    font-weight: normal; }
+  .repos-wrapper a {
+    text-decoration: none; }
+  .repos-wrapper .repo-item {
+    padding: 0.5rem 0;
+    border-top: 1px solid #00a5d8; }
+    .repos-wrapper .repo-item:hover {
+      background: #00b1e7; }
+    .repos-wrapper .repo-item .repo-name {
+      margin-bottom: 0.3rem;
+      color: #686868; }
+    .repos-wrapper .repo-item .repo-stars > i {
+      margin-right: 0.3rem; }
+
+.commits-wrapper {
+  flex: 3;
+  margin: 1rem 2rem; }
+  .commits-wrapper .btn-load-more {
+    background: #00b9f1;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border-bottom: 3px solid #0092be;
+    display: inline-block;
+    margin: 1rem 0; }
+  .commits-wrapper h4 {
+    text-transform: uppercase; }
+  .commits-wrapper .repo-stats {
+    margin: 1rem 0; }
+    .commits-wrapper .repo-stats .stats-item {
+      margin-right: 1rem; }
+      .commits-wrapper .repo-stats .stats-item .fa {
+        margin-right: 0.3rem; }
+  .commits-wrapper .commits-list {
+    padding: 0;
+    border: 1px solid #00b9f1; }
+    .commits-wrapper .commits-list .commits-list-item {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #00b9f1;
+      list-style: none; }
+      .commits-wrapper .commits-list .commits-list-item:last-child {
+        border-bottom: none; }
+      .commits-wrapper .commits-list .commits-list-item .commit-metadata .commit-author-avatar {
+        width: 1rem;
+        height: 1rem; }
+
+@media (max-width: 1024px) {
+  .repos-wrapper {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    transition: all 1s; }
+  .hide-menu {
+    transform: translateX(-100%);
+    transition: all 1s; }
+  .menu-bars {
+    position: absolute;
+    font-size: 2rem;
+    right: 1rem;
+    top: 0.6rem;
+    z-index: 9999;
+    display: block; }
+  .btn-load-more {
+    text-align: center; } }

@@ -1,17 +1,25 @@
 import React from 'react';
 import RepoList from './RepoList';
+import { connect } from 'react-redux';
 import RepoInfoWrapper from './RepoInfoWrapper';
 import { Route } from 'react-router-dom'
+import MenuBar from './MenuBar';
+import {isMobile} from 'react-device-detect';
 
 class App extends React.Component {
 	render() {
+		const { disableMenu } = this.props;
+
+		const hideMenu = disableMenu && screen.width < 1024 ? 'hide-menu' : '';
+
 		return (
-			<div>
-				<nav style={{ width: '40%', display: 'inline-block' }}>
+			<div className="app-wrapper">
+				<MenuBar />
+				<nav className={`repos-wrapper ${hideMenu}`}>
 					<h2>Repositories</h2>
 					<RepoList />
 				</nav>
-				<main style={{ width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+				<main className="commits-wrapper">
 					<Route path="/:repository" component={RepoInfoWrapper} />
 				</main>
 			</div>
@@ -19,4 +27,12 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    disableMenu: state.disableMenu
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(App);

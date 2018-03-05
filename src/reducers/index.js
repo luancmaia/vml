@@ -5,6 +5,7 @@ const initialState = {
 	repos: [],
 	commits: [],
 	current_repo: [],
+	disableMenu: false,
 	commits_page: 1,
 	loadMoreCommits: false
 }
@@ -18,7 +19,7 @@ function reducer(state = initialState, action) {
 			return Object.assign({}, state, { fetchingRepo: false, repos: action.payload.data.items });
 
 		case "SET_CURRENT_REPO":
-			return Object.assign({}, state, { current_repo: action.payload } );
+			return Object.assign({}, state, { current_repo: action.payload, loadMoreCommits: false, commits_page: 1 } );
 
 		case "LOAD_MORE_COMMITS_PENDING":
 			return Object.assign({}, state, { fetchingMoreCommits: true })
@@ -40,6 +41,12 @@ function reducer(state = initialState, action) {
 				commits: action.payload.data,
 				loadMoreCommits: action.payload.headers.link ? action.payload.headers.link.includes('next') : false
 			});
+
+		case "DISABLE_MENU":
+			return Object.assign({}, state, { disableMenu: action.payload });
+
+		default:
+			return state;
 	}
 	return state;
 }

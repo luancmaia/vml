@@ -1,0 +1,41 @@
+.commits-wrapper
+	flex: 3
+	margin: 1rem 2rem
+
+	.btn-load-more
+	    background: $blue
+	    color: $white
+	    padding: 0.5rem 1rem
+	    border-radius: 5px
+	    border-bottom: 3px solid darken($blue, 10%)
+	    display: inline-block
+	    margin: 1rem 0
+
+	h4
+		text-transform: uppercase
+
+	.repo-stats
+		margin: 1rem 0
+
+		.stats-item
+			margin-right: 1rem
+
+			.fa
+				margin-right: 0.3rem
+
+	.commits-list
+		padding: 0;
+		border: 1px solid $blue
+
+		.commits-list-item
+			padding: 0.5rem 1rem
+			border-bottom: 1px solid $blue
+			list-style: none
+
+			&:last-child
+				border-bottom: none
+
+			.commit-metadata
+				.commit-author-avatar
+					width: 1rem
+					height: 1rem

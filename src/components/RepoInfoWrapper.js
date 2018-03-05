@@ -6,16 +6,30 @@ class RepoInfoWrapper extends React.Component {
 
 	render() {
 		const { current_repo, commits, requestMoreCommits, loadMoreCommits, commits_page } = this.props;
-		const loadMore = loadMoreCommits ? 
-			<span onClick={requestMoreCommits.bind(this, current_repo, commits_page)}>LOAD MORE</span>: '';
+		const loadMore = loadMoreCommits && commits.length >= 20 ? 
+			<span className="btn-load-more" onClick={requestMoreCommits.bind(this, current_repo, commits_page)}>LOAD MORE COMMITS</span>: '';
 		return (
 			<div>
 				<h4>{current_repo.name}</h4>
-				<span>{current_repo.forks_count}</span>
-				<span>{current_repo.stargazers_count}</span>
-				{commits.map(item => (
-					<div>{item.commit.message}</div>
-				))}
+				<div className="repo-stats">
+					<span className="stats-item">
+						<i class="fa fa-star"></i>
+						{current_repo.stargazers_count}
+					</span>
+					<span className="stats-item">
+						<i class="fa fa-code-branch"></i>
+						{current_repo.forks_count}
+					</span>
+				</div>
+				<ul className="commits-list">
+					{commits.map(item => (
+						<li className="commits-list-item">
+							<span className="commit-message">
+								{item.commit.message}
+							</span>
+						</li>
+					))}
+				</ul>
 				{loadMore}
 			</div>
 		);
@@ -35,7 +49,7 @@ const mapDispatchToProps = dispatch => {
   return {
     requestMoreCommits : (item, page) => dispatch({
 		type: 'LOAD_MORE_COMMITS',
-		payload: axios.get('https://api.github.com/repos/globocom/'+item.name+'/commits', {
+		payload: axios.get(`https://api.github.com/repos/globocom/${item.name}/commits`, {
 			params: {
 				page: page + 1,
 				per_page: 20

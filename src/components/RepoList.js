@@ -16,7 +16,7 @@ class RepoList extends React.Component {
 	}
 
 	render() {
-		const { repos, loadRepoCommits, setCurrentRepo } = this.props;
+		const { repos, loadRepoCommits, setCurrentRepo, disableMenu } = this.props;
 		const isEmpty = repos.length === 0;
 
 		if ( isEmpty ) {
@@ -26,7 +26,7 @@ class RepoList extends React.Component {
 		return (
 			repos.map(item => (
 				<Link to={`/${item.name}`}>
-					<RepoItem repo={item} click={loadRepoCommits.bind(this, item)} />
+					<RepoItem repo={item} click={loadRepoCommits.bind(this, item, disableMenu)} />
 				</Link>
 			))
 		);
@@ -37,21 +37,25 @@ const mapDispatchToProps = dispatch => {
   return {
     loadRepositories : () => dispatch({
 		type: 'REQUEST_REPO',
-		payload: axios.get('https://api.github.com/search/repositories?q=user:globocom&sort=stars:desc')
+		payload: axios.get('https://api.github.com/search/repositories?q=user:globocom&sort=stars:desc&per_page=200')
 	}),
-	loadRepoCommits : (item) => {
+	loadRepoCommits : (item, flag) => {
 		dispatch({
 			type: 'SET_CURRENT_REPO',
 			payload: item
 		}),
 		dispatch({
 			type: 'REQUEST_COMMITS',
-			payload: axios.get('https://api.github.com/repos/globocom/'+item.name+'/commits', {
+			payload: axios.get(`https://api.github.com/repos/globocom/${item.name}/commits`, {
 				params: {
 					page: 1,
 					per_page: 20
 				}
 			})
+		}),
+		dispatch({
+			type: 'DISABLE_MENU',
+			payload: flag ? false : true
 		})
 	}
   }
@@ -59,7 +63,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    repos : state.repos
+    repos : state.repos,
+    disableMenu: state.disableMenu
   }
 }
 
