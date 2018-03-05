@@ -8,11 +8,11 @@
 **Go to project folder**
 `cd vml`
 
-**Install all dependencies**
+**Install dependencies**
 `npm install`
 
-**Start Webpack Dev Server**
-`webpack-dev-server`
+**Install and Start Webpack Dev Server**
+`npm install webpack-dev-server -g && webpack-dev-server`
 
 **Access from the browser**
 `http://localhost:3333`
