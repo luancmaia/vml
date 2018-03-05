@@ -8,6 +8,9 @@
 **Go to project folder**
 `cd vml`
 
+**Install all dependencies**
+`npm install`
+
 **Start Webpack Dev Server**
 `webpack-dev-server`
 

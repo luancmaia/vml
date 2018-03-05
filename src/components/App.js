@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import RepoInfoWrapper from './RepoInfoWrapper';
 import { Route } from 'react-router-dom'
 import MenuBar from './MenuBar';
-import {isMobile} from 'react-device-detect';
 
 class App extends React.Component {
 	render() {
