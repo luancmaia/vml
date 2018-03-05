@@ -11,3 +11,6 @@
 **Start Webpack Dev Server**
 `webpack-dev-server`
 
+**Access from the browser**
+`http://localhost:3333`
+
