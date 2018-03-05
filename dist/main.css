@@ -46,7 +46,7 @@ body, h1, h2, h3, h4, h5, ul {
 
 .commits-wrapper {
   flex: 3;
-  margin: 1rem 2rem; }
+  padding: 1rem 2rem; }
   .commits-wrapper .btn-load-more {
     background: #00b9f1;
     color: #ffffff;
@@ -54,7 +54,8 @@ body, h1, h2, h3, h4, h5, ul {
     border-radius: 5px;
     border-bottom: 3px solid #0092be;
     display: inline-block;
-    margin: 1rem 0; }
+    margin: 1rem 0;
+    cursor: pointer; }
   .commits-wrapper h4 {
     text-transform: uppercase; }
   .commits-wrapper .repo-stats {
@@ -72,6 +73,8 @@ body, h1, h2, h3, h4, h5, ul {
       list-style: none; }
       .commits-wrapper .commits-list .commits-list-item:last-child {
         border-bottom: none; }
+      .commits-wrapper .commits-list .commits-list-item .commit-message {
+        word-wrap: break-word; }
       .commits-wrapper .commits-list .commits-list-item .commit-metadata .commit-author-avatar {
         width: 1rem;
         height: 1rem; }
@@ -93,4 +96,6 @@ body, h1, h2, h3, h4, h5, ul {
     z-index: 9999;
     display: block; }
   .btn-load-more {
-    text-align: center; } }
+    text-align: center; }
+  .app-wrapper {
+    display: block; } }

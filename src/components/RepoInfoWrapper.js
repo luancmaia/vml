@@ -4,6 +4,20 @@ import axios from 'axios';
 
 class RepoInfoWrapper extends React.Component {
 
+	renderCommits(commits) {
+		if ( commits.length > 0 ) {
+			return (<ul className="commits-list">
+					{commits.map(item => (
+						<li className="commits-list-item">
+							<span className="commit-message">
+								{item.commit.message}
+							</span>
+						</li>
+					))}
+				</ul>);
+		}
+	}
+
 	render() {
 		const { current_repo, commits, requestMoreCommits, loadMoreCommits, commits_page } = this.props;
 		const loadMore = loadMoreCommits && commits.length >= 20 ? 
@@ -21,15 +35,7 @@ class RepoInfoWrapper extends React.Component {
 						{current_repo.forks_count}
 					</span>
 				</div>
-				<ul className="commits-list">
-					{commits.map(item => (
-						<li className="commits-list-item">
-							<span className="commit-message">
-								{item.commit.message}
-							</span>
-						</li>
-					))}
-				</ul>
+				{this.renderCommits(commits)}
 				{loadMore}
 			</div>
 		);

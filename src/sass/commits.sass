@@ -1,6 +1,6 @@
 .commits-wrapper
 	flex: 3
-	margin: 1rem 2rem
+	padding: 1rem 2rem
 
 	.btn-load-more
 	    background: $blue
@@ -10,6 +10,7 @@
 	    border-bottom: 3px solid darken($blue, 10%)
 	    display: inline-block
 	    margin: 1rem 0
+	    cursor: pointer
 
 	h4
 		text-transform: uppercase
@@ -34,6 +35,9 @@
 
 			&:last-child
 				border-bottom: none
+
+			.commit-message
+				    word-wrap: break-word
 
 			.commit-metadata
 				.commit-author-avatar

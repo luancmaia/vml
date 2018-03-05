@@ -9,9 +9,9 @@ import {isMobile} from 'react-device-detect';
 class App extends React.Component {
 	render() {
 		const { disableMenu } = this.props;
-
-		const hideMenu = disableMenu && screen.width < 1024 ? 'hide-menu' : '';
-
+		const isMobile = window.innerWidth < 1024 ? true : false;
+		const hideMenu = disableMenu && isMobile ? 'hide-menu' : '';
+		
 		return (
 			<div className="app-wrapper">
 				<MenuBar />
